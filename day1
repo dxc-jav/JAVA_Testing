@@ -1,0 +1,114 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Mon Apr 26 15:11:42 2021
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> conn dxctest
+Enter password:
+Connected.
+SQL> create table stock(name varchar(20),quantity int,price int);
+
+Table created.
+
+SQL> insert into stock values('pen',10,5);
+
+1 row created.
+
+SQL> insert into stock values('book',8,50);
+
+1 row created.
+
+SQL> insert into stock values('pencil',11,10);
+
+1 row created.
+
+SQL> insert into stock values('bag',5,500);
+
+1 row created.
+
+SQL> insert into stock values('slate',6,50);
+
+1 row created.
+
+SQL> select * from stock;
+
+NAME                   QUANTITY      PRICE
+-------------------- ---------- ----------
+pen                          10          5
+book                          8         50
+pencil                       11         10
+bag                           5        500
+slate                         6         50
+
+SQL> create table sales(product varchar(10),quantity int);
+
+Table created.
+
+SQL> insert into sales('pen',5);
+insert into sales('pen',5)
+                  *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into sales values('pen',5);
+
+1 row created.
+
+SQL> insert into sales values('book',5);
+
+1 row created.
+
+SQL> insert into sales values('pencil',10);
+
+1 row created.
+
+SQL> insert into sales values('bag',12);
+
+1 row created.
+
+SQL> insert into sales values('slate',5);
+
+1 row created.
+
+SQL> select * from sales;
+
+PRODUCT      QUANTITY
+---------- ----------
+pen                 5
+book                5
+pencil             10
+bag                12
+slate               5
+
+SQL> select sysdate from dual;
+
+SYSDATE
+---------
+26-APR-21
+
+SQL> select to_char(sysdate,'dd-mm-yyyy hh:mi') from dual;
+
+TO_CHAR(SYSDATE,
+----------------
+26-04-2021 03:28
+
+SQL> select to_char(sysdate,'dd/mm/yyyy') from dual;
+
+TO_CHAR(SY
+----------
+26/04/2021
+
+SQL> select sysdate, sysdate+10 add_10_days from dual;
+
+SYSDATE   ADD_10_DA
+--------- ---------
+26-APR-21 06-MAY-21
+
+SQL> select to_char(sysdate,'DAY') from dual;
+
+TO_CHAR(SYSDATE,'DAY')
+------------------------------------
+MONDAY
+
+SQL>
