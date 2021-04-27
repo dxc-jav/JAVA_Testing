@@ -1,0 +1,78 @@
+
+SQL> create table timetable
+  2  (
+  3  day varchar(5) check(day in('mon','tue','wed','thu','fri','sat')),
+  4  ssn int,
+  5  faculty varchar(10),
+  6  sem int,
+  7  room varchar(10) check(room like 'r%'),
+  8  subject varchar(10),
+  9  constraint ttpk primary key(day,ssn,sem,subject),
+ 10  unique(day,ssn,faculty,room)
+ 11  );
+
+Table created.
+
+SQL> insert into timetable('mon',1,'john',7,'r3','dbms');
+insert into timetable('mon',1,'john',7,'r3','dbms')
+                      *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into timetable values('mon',1,'john',7,'r3','dbms');
+
+1 row created.
+
+SQL> insert into timetable values('mon',2,'john',7,'r4','dbms');
+
+1 row created.
+
+SQL> insert into timetable values('tue',2,'sarika',8,'r3','java');
+
+1 row created.
+
+SQL> insert into timetable values('tue',2,'sarika',8,'r4','java');
+insert into timetable values('tue',2,'sarika',8,'r4','java')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXCTEST.TTPK) violated
+
+
+SQL> insert into timetable values('fri',2,'sarika',8,'r4','java');
+
+1 row created.
+
+SQL> insert into timetable values('fri',1,'ram',7,'r4','c++');
+
+1 row created.
+
+SQL> insert into timetable values('fri',1,'ram',7,'r4','os');
+insert into timetable values('fri',1,'ram',7,'r4','os')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXCTEST.SYS_C007031) violated
+
+
+SQL> insert into timetable values('fri',3,'ram',8,'r2','os');
+
+1 row created.
+
+SQL> select * from timetable;
+
+DAY          SSN FACULTY           SEM ROOM       SUBJECT
+----- ---------- ---------- ---------- ---------- ----------
+mon            1 john                7 r3         dbms
+mon            2 john                7 r4         dbms
+tue            2 sarika              8 r3         java
+fri            2 sarika              8 r4         java
+fri            1 ram                 7 r4         c++
+fri            3 ram                 8 r2         os
+
+6 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL>
