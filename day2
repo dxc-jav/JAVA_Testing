@@ -1,0 +1,114 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Apr 27 13:52:38 2021
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> conn dxctest
+Enter password:
+Connected.
+SQL> select * from employee;
+
+FNAME      MNAME      LNAME             AGE CITY
+---------- ---------- ---------- ---------- --------------------
+DESIGNATION          ID    DOB
+-------------------- ----- ---------
+charan     sai        tej                22 Bomby
+associate manager    emp01 28-MAY-00
+
+kota       loknath    singh              32 Bijapur
+sales manager        emp03 24-JUN-89
+
+sai        soumya     reddy              30 Bangladesh
+acc manager          emp04 14-MAR-90
+
+
+FNAME      MNAME      LNAME             AGE CITY
+---------- ---------- ---------- ---------- --------------------
+DESIGNATION          ID    DOB
+-------------------- ----- ---------
+nanda      kumar      naidu              45 Bhupal
+product manager      emp05 30-SEP-95
+
+
+SQL> insert into employee values('sri','hari','kumar',25,'Bangalore','project manager','emp02',TO_DATE('1/4/2000','dd/mm/yy'));
+
+1 row created.
+
+SQL> update employee set city='Bampi' where fname='nanda';
+
+1 row updated.
+
+SQL> select * from employee where fname='nandu';
+
+no rows selected
+
+SQL> select * from employee where fname='nanda';
+
+FNAME      MNAME      LNAME             AGE CITY
+---------- ---------- ---------- ---------- --------------------
+DESIGNATION          ID    DOB
+-------------------- ----- ---------
+nanda      kumar      naidu              45 Bampi
+product manager      emp05 30-SEP-95
+
+
+SQL> delete from employee where fname='nanda';
+
+1 row deleted.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> delete from emplyee;
+delete from emplyee
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> delete from employee;
+
+4 rows deleted.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from employee;
+
+FNAME      MNAME      LNAME             AGE CITY
+---------- ---------- ---------- ---------- --------------------
+DESIGNATION          ID    DOB
+-------------------- ----- ---------
+sri        hari       kumar              25 Bangalore
+project manager      emp02 01-APR-00
+
+charan     sai        tej                22 Bomby
+associate manager    emp01 28-MAY-00
+
+kota       loknath    singh              32 Bijapur
+sales manager        emp03 24-JUN-89
+
+
+FNAME      MNAME      LNAME             AGE CITY
+---------- ---------- ---------- ---------- --------------------
+DESIGNATION          ID    DOB
+-------------------- ----- ---------
+sai        soumya     reddy              30 Bangladesh
+acc manager          emp04 14-MAR-90
+
+
+SQL> select fname,mname,lname,dob from employee where id='emp03';
+
+FNAME      MNAME      LNAME      DOB
+---------- ---------- ---------- ---------
+kota       loknath    singh      24-JUN-89
+
+SQL> select substr(fname,1,1),substr(mname,1,1),lname from employee where id='emp04';
+
+SUBS SUBS LNAME
+---- ---- ----------
+s    s    reddy
+
+SQL>
