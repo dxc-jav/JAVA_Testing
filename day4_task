@@ -1,0 +1,39 @@
+
+public class Example {
+	String MyReplaceFirst(String data,char first,char replace1,char replace2)
+	{
+		char[] ele=data.toCharArray();
+		int c=0;
+		for(int i=0;i<ele.length;i++)
+		{
+			if(ele[i]==first)
+				c+=1;
+		}
+		int c2=0;
+		for(int i=0;i<ele.length;i++)
+		{
+			if(ele[i]==first)
+			{
+				c2=c2+1;
+			}
+			if((ele[i]==first)&&(c2==1))
+			{
+				ele[i]=replace1;
+			}
+			if((ele[i]==first)&&(c2==c))
+			{
+				ele[i]=replace2;
+			}
+				
+		}
+		String a=new String(ele);
+		return a;
+	}
+	public static void main(String[] args) {
+		String str="Helllllo";
+		Example k=new Example();
+		String res=k.MyReplaceFirst(str,'l','k','m');
+		System.out.println(res);
+	}
+
+}
