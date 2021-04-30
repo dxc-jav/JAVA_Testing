@@ -1,0 +1,63 @@
+
+public class StrFunctions {
+	String hasUpper(String data)
+	{
+		char[] arr=data.toCharArray();
+		String res="NO";
+		for(int i=0;i<arr.length;i++)
+		{
+			char a=arr[i];
+			if((a>='A')&&(a<='Z'))
+				res="YES";
+		}
+		return res;
+	}
+	String hasNumber(String data)
+	{
+		char[] arr=data.toCharArray();
+		String res="NO";
+		for(int i=0;i<arr.length;i++)
+		{
+			char a=arr[i];
+			if((a>='0')&&(a<='9'))
+				res="YES";
+		}
+		return res;
+	}
+	boolean isCapsOnly(String data)
+	{
+		char[] arr=data.toCharArray();
+		boolean res=false;
+		int c=0;
+		for(int i=0;i<arr.length;i++)
+		{
+			if((arr[i]>='A')&&(arr[i]<='Z'))
+				c+=1;
+				
+		}
+		if(c==arr.length)
+			res=true;
+		return res;
+	}
+	int countCaps(String data)
+	{
+		char[] arr=data.toCharArray();
+		int c=0;
+		for(int i=0;i<arr.length;i++)
+		{
+			char a=arr[i];
+			if((a>='A')&&(a<='Z'))
+				c=c+1;
+		}
+		return c;
+	}
+	public static void main(String[] args) {
+		StrFunctions str=new StrFunctions();
+		String r1=str.hasUpper("Upper");
+		String r2=str.hasNumber("Ramu@123");
+		boolean r3=str.isCapsOnly("DXC");
+		int r4=str.countCaps("SuMaThI");
+		System.out.println("Is Upper case letter is there? "+r1+"\nIs number is there? "+r2+"\nIs the string contains only Caps? "+r3+"\nNo.of Capital letters is "+r4);
+	}
+
+}
