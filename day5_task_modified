@@ -1,0 +1,61 @@
+
+public class StringFunctions {
+		boolean isEqual(char c1,char c2)
+		{
+			boolean res=false;
+			int a=c1,b=c2;
+			if(a>b)
+				b=b+32;
+			else
+				a=a+32;
+			if(a==b)
+				res=true;
+			return res;
+		}
+		boolean isEqual(String str1,String str2)
+		{
+			
+			boolean res=true;
+			int a,b;
+			char[] arr=str1.toCharArray();
+			char[] arr1=str2.toCharArray();
+			if((arr.length)==(arr1.length))
+			{
+			for(int i=0;i<arr.length;i++)
+			{
+				a=arr[i];
+				b=arr1[i];
+				if(a>b)
+				{
+					a=a-32;
+					arr[i]=(char)a;
+				}
+				else if(b>a)
+				{
+					b=b-32;
+					arr1[i]=(char)b;
+				}
+				if(arr[i]!=arr1[i])
+				{
+					return false;
+				}
+			}
+			}
+			else
+			{
+				res=false;
+			}
+			return res;
+		}
+		
+		public static void main(String[] args) {
+			StringFunctions str=new StringFunctions();
+			boolean r1=str.isEqual('z', 'Z');
+			boolean r2=str.isEqual("STRing", "string");
+			System.out.println("Is char equal? "+r1+"\nIs string equal? "+r2);
+		}
+
+	}
+
+
+
