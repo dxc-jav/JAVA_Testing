@@ -1,0 +1,37 @@
+
+package stringcaserev;
+
+public class StringCaseRev {
+
+    String strReverse(String str)
+    {
+      char[] arr=str.toCharArray();
+      char[] arr1=new char[arr.length];
+      int j=0;
+      for(int i=arr.length-1;i>=0;i--)
+      {
+          int x=arr[i];
+          if((arr[j]>='A')&&(arr[j]<='Z'))
+          {
+              x=x-32;
+           arr1[j]=(char)x;
+          }
+          else if((arr[i]>='A')&&(arr[i])<='Z')
+          {
+              x=x+32;
+              arr1[j]=(char)x;
+          }
+          else
+          arr1[j]=arr[i];
+          j++;
+      }
+      String str1=new String(arr1);
+      return str1;
+    }
+    public static void main(String[] args) {
+       StringCaseRev sr=new StringCaseRev();
+       String str=sr.strReverse("JavaTesting");
+       System.out.println("Reverse String= "+str);
+    }
+    
+}
