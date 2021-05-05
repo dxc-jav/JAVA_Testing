@@ -1,0 +1,110 @@
+import java.util.*;
+class ShowRoom
+{
+	private String name;
+	private int cars;
+	public String getName() {
+		return name;
+		}
+		public void setName(String name) {
+		this.name = name;
+		}
+		public int getcars() {
+			return cars;
+			}
+			public void setCars(int cars) {
+			this.cars = cars;
+			}
+			@Override
+			public String toString() {
+			return "ShowRoom Info:[name=" + name + " cars=" + cars+"]";
+			}
+			public ShowRoom(String name, int cars) {
+				super();
+				this.name = name;
+				this.cars=cars;
+				}
+}
+class CarDemo extends ShowRoom
+{
+	private static int cars;
+	private String modal;
+	private String cname;
+	private String price;
+	public String getModal() {
+		return modal;
+	}
+	public void setModal(String modal) {
+		this.modal = modal;
+	}
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	@Override
+	public String toString() {
+		return "CarDemo [modal=" + modal + ", cname=" + cname + ", price=" + price + "]";
+	}
+	public CarDemo(String name,int cars,String modal, String cname, String price) {
+		super(name, cars);
+		this.modal = modal;
+		this.cname = cname;
+		this.price = price;
+	}
+	
+}
+public class Car {
+	public static void main(String[] args) {
+		
+		CarDemo sh1=new CarDemo("SaiKeerthi",3,"Mahindra","Mahindra Thar","14.16Lk");
+		CarDemo sh12=new CarDemo("SaiKeerthi",3,"Maruti","Maruti Ertiga","10.59Lk");
+		CarDemo sh13=new CarDemo("SaiKeerthi",3,"Renault","Renault Triber","9.02Lk");
+		
+		CarDemo sh2=new CarDemo("Manohar",3,"Kia","Kia Seltos","17.65Lk");
+		CarDemo sh21=new CarDemo("Manohar",3,"Maruti","Maruti Dzire","7.82Lk");
+		CarDemo sh22=new CarDemo("Manohar",3,"Hyundai","Hyundai Verna","15.25Lk");
+		
+		CarDemo sh3=new CarDemo("Kalpana",3,"Tayota","Toyota Fornuer","37.79Lk");
+		CarDemo sh31=new CarDemo("Kalpana",3,"Maruti","Maruti XL6","82Lk");
+		CarDemo sh32=new CarDemo("Kalpana",3,"Hyundai","Hyundai Aura","9.35Lk");
+		ArrayList<CarDemo> showroom1=new ArrayList<>();
+		showroom1.add(sh1);
+		showroom1.add(sh12);
+		showroom1.add(sh13);
+		
+		ArrayList<CarDemo> showroom2=new ArrayList<>();
+		showroom2.add(sh2);
+		showroom2.add(sh21);
+		showroom2.add(sh22);
+		
+		ArrayList<CarDemo> showroom3=new ArrayList<>();
+		showroom3.add(sh3);
+		showroom3.add(sh31);
+		showroom3.add(sh32);
+		
+		Map<String,ArrayList<CarDemo>> showroom=new HashMap<String,ArrayList<CarDemo>>();
+		showroom.put("Saikeerthi", showroom1);
+		showroom.put("Manohar", showroom2);
+		showroom.put("Kalpana", showroom3);
+		
+		System.out.println("Showroom List:\nSaikeerthi\nManohar\nKalpana");
+		Scanner sc=new Scanner(System.in);
+		String shw=sc.nextLine();
+		ArrayList<CarDemo> show=showroom.get(shw);
+		for(CarDemo cardemo:show)
+		{
+			System.out.println(cardemo);
+		}
+		
+		
+	}
+
+}
