@@ -1,0 +1,124 @@
+DbConn.java:--
+
+package com.myproject.dbutil;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DbConn {
+	public static Connection dbConnect(){
+		try
+		{
+			Class.forName("oracle.jdbc.OracleDriver");
+			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","dxctest","root");
+			return con;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+	        return null;
+		}
+	}
+
+}
+
+Player.java:--
+
+package com.myproject.model;
+
+public class Player {
+	String pname;
+	String prole;
+	String style;
+	String team;
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+	public String getProle() {
+		return prole;
+	}
+	public void setProle(String prole) {
+		this.prole = prole;
+	}
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	public String getTeam() {
+		return team;
+	}
+	public void setTeam(String team) {
+		this.team = team;
+	}
+	@Override
+	public String toString() {
+		return "Player [pname=" + pname + ", prole=" + prole + ", style=" + style + ", team=" + team + "]";
+	}
+	public Player(String pname, String prole, String style, String team) {
+		super();
+		this.pname = pname;
+		this.prole = prole;
+		this.style = style;
+		this.team = team;
+	}
+	
+
+}
+
+
+PlayerDao:---
+
+package com.myproject.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import com.myproject.dbutil.DbConn;
+import com.myproject.model.Player;
+
+public class PlayerDao {
+	public String savePlayer(Player player)
+	{
+		try
+		{
+			String sql="insert into player values(?,?,?,?)";
+			Connection con=DbConn.dbConnect();
+			PreparedStatement st=con.prepareStatement(sql);
+			st.setString(1,player.getPname());
+			st.setString(2,player.getProle());
+			st.setString(3,player.getStyle());
+			st.setString(4, player.getTeam());
+			int res=st.executeUpdate();
+			if(res>0)
+				return "record inserted";
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return "not connected";
+	}
+
+}
+
+PlayerService.java:--
+
+package com.myproject.service;
+
+import com.myproject.dao.PlayerDao;
+import com.myproject.model.Player;
+
+public class PlayerService {
+	public static void main(String[] args) {
+		Player player=new Player("RohitSharma","Batsman","Right Hand Bat","MI");
+		PlayerDao dao=new PlayerDao();
+		String res=dao.savePlayer(player);
+		System.out.println(res);
+	}
+
+}
